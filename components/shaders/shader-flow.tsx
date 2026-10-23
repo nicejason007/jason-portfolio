@@ -138,12 +138,19 @@ export function ShaderFlow(props: ShaderFlowProps): ReactNode {
     const el = ref.current;
     if (!el) return;
 
-    const r = new Renderer({
-      dpr: Math.min(window.devicePixelRatio || 1, 1),
-      alpha: false,
-      antialias: false,
-      powerPreference: "high-performance",
-    });
+    let r: Renderer;
+    try {
+      r = new Renderer({
+        dpr: Math.min(window.devicePixelRatio || 1, 1),
+        alpha: false,
+        antialias: false,
+        powerPreference: "high-performance",
+      });
+    } catch {
+      // WebGL unavailable (headless / GPU-disabled browsers): skip the
+      // shader and let the CSS background show through instead of crashing.
+      return;
+    }
     const gl = r.gl;
     gl.canvas.style.width = "100%";
     gl.canvas.style.height = "100%";

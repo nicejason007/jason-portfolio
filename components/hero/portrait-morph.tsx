@@ -132,11 +132,19 @@ export function PortraitMorph({
     const container = containerRef.current;
     if (!container) return;
 
-    const renderer = new Renderer({
-      alpha: true,
-      premultipliedAlpha: false,
-      dpr: Math.min(window.devicePixelRatio || 1, 2),
-    });
+    let renderer: Renderer;
+    try {
+      renderer = new Renderer({
+        alpha: true,
+        premultipliedAlpha: false,
+        dpr: Math.min(window.devicePixelRatio || 1, 2),
+      });
+    } catch {
+      // WebGL unavailable (headless / GPU-disabled browsers): keep the
+      // static fallback <img> and skip the morph animation.
+      setReady(false);
+      return;
+    }
     const gl = renderer.gl;
     const canvas = gl.canvas as HTMLCanvasElement;
     canvas.style.width = "100%";

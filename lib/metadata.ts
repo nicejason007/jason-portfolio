@@ -1,25 +1,26 @@
 import type { Metadata } from "next";
 
 export const siteConfig = {
-  name: "Portfolio",
+  name: "Jason Li",
   description:
-    "A modern, accessible portfolio template built with Next.js, Tailwind CSS, and TypeScript.",
-  url: "https://example.com",
+    "UI/UX designer based in Shenzhen — design systems, B2B SaaS, and data visualization.",
+  url: "https://example.com", // TODO: replace with your final Vercel URL after deploying
   ogImage: "/og-image.png",
-  creator: "@yourhandle",
+  creator: "Jason Li",
   authors: [
     {
-      name: "Your Name",
+      name: "Jason Li",
       url: "https://example.com",
     },
   ],
   keywords: [
-    "portfolio",
-    "personal site",
-    "Next.js",
-    "React",
-    "Tailwind CSS",
-    "TypeScript",
+    "UI/UX Designer",
+    "Product Designer",
+    "Design Systems",
+    "B2B SaaS",
+    "Data Visualization",
+    "Figma",
+    "Shenzhen",
   ],
 } as const;
 

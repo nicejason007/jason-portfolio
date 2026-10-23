@@ -1,11 +1,13 @@
-import { Mail } from "lucide-react";
-import Image from "next/image";
+import { Mail, MessageCircle, Phone } from "lucide-react";
 import Link from "next/link";
 import type { ReactNode } from "react";
 
 import { ContactCardCtas } from "./contact-card-ctas";
 import { FadeIn } from "@/components/ui/motion-primitives";
 import { ShaderFlow } from "../shaders/shader-flow";
+
+const EMAIL = "jason_nice@foxmail.com";
+const PHONE = "+8613728642026";
 
 const CARD_FADE_MASK =
   "radial-gradient(ellipse 90% 110% at 50% 50%, rgba(0,0,0,1) 0%, rgba(0,0,0,0.92) 40%, rgba(0,0,0,0.7) 70%, rgba(0,0,0,0.4) 90%, rgba(0,0,0,0.15) 100%)";
@@ -42,27 +44,24 @@ export function ContactCard(): ReactNode {
               <div className="border-foreground/8 flex flex-col items-center justify-center gap-6 rounded-[1.1rem] border bg-background p-6 sm:p-8">
                 <div className="flex items-center gap-3 opacity-75">
                   <SocialIcon
-                    href="mailto:hello@example.com"
+                    href={`mailto:${EMAIL}`}
                     label="Email"
                     lucideIcon={Mail}
                   />
                   <SocialIcon
-                    href="https://www.linkedin.com"
-                    label="LinkedIn"
-                    imageSrc="/linkedin.svg"
+                    href="/wechat.png"
+                    label="WeChat (scan to add)"
+                    lucideIcon={MessageCircle}
                   />
                   <SocialIcon
-                    href="https://x.com"
-                    label="X"
-                    imageSrc="/x.svg"
+                    href={`tel:${PHONE}`}
+                    label="Phone"
+                    lucideIcon={Phone}
                   />
                 </div>
                 <div className="flex flex-col items-center gap-1 text-center">
                   <p className="text-[13px] tracking-tight text-foreground/70">
-                    2026 &copy; Built with Next.js
-                  </p>
-                  <p className="text-[12px] tracking-tight text-foreground/45">
-                    By React Bits Pro
+                    2026 &copy; Jason Li · Built with Next.js
                   </p>
                 </div>
               </div>
@@ -78,36 +77,25 @@ function SocialIcon({
   href,
   label,
   lucideIcon: LucideIcon,
-  imageSrc,
 }: {
   href: string;
   label: string;
-  lucideIcon?: React.ComponentType<{ className?: string; strokeWidth?: number }>;
-  imageSrc?: string;
+  lucideIcon: React.ComponentType<{ className?: string; strokeWidth?: number }>;
 }): ReactNode {
-  const isExternal = href.startsWith("http");
-  const props = isExternal
+  const openNewTab =
+    href.startsWith("http") || /\.(png|jpe?g|webp)$/i.test(href);
+  const props = openNewTab
     ? { target: "_blank", rel: "noopener noreferrer" }
     : {};
   return (
     <Link
       href={href}
       aria-label={label}
+      title={label}
       className="border-foreground/8 hover:border-foreground/15 focus-ring inline-flex h-11 w-11 items-center justify-center rounded-xl border bg-background text-foreground/70 transition-colors hover:text-foreground"
       {...props}
     >
-      {LucideIcon ? (
-        <LucideIcon className="h-4 w-4" strokeWidth={2.5} aria-hidden="true" />
-      ) : imageSrc ? (
-        <Image
-          src={imageSrc}
-          alt=""
-          width={14}
-          height={14}
-          aria-hidden="true"
-          className="max-h-[14px] max-w-[14px] object-contain dark:invert"
-        />
-      ) : null}
+      <LucideIcon className="h-4 w-4" strokeWidth={2.5} aria-hidden="true" />
     </Link>
   );
 }

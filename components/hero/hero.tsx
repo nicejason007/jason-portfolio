@@ -4,8 +4,8 @@ import { HeroCtas } from "./hero-ctas";
 import { FadeIn, ScaleUnblur } from "@/components/ui/motion-primitives";
 import { PortraitMorph } from "./portrait-morph";
 
-const PORTRAIT_SRC = "/josh.webp";
-const PORTRAIT_HOVER_SRC = "/josh_wave.webp";
+const PORTRAIT_SRC = "/jason.webp";
+const PORTRAIT_HOVER_SRC = "/jason_wave.webp";
 
 export function Hero(): ReactNode {
   return (
@@ -18,19 +18,19 @@ export function Hero(): ReactNode {
               <span aria-hidden="true" className="mx-0.5">
                 👋
               </span>
-              , I&rsquo;m Josh
+              , I&rsquo;m Jason
             </p>
 
             <h1 className="text-[2.75rem] font-medium leading-[1.05] tracking-tight text-foreground md:text-[2.5rem] lg:text-[3.65rem]">
               <span className="block whitespace-nowrap">
-                Design engineer &
+                UI/UX Designer
               </span>
-              <span className="block whitespace-nowrap">AI enthusiast</span>
+              <span className="block whitespace-nowrap">for B2B products</span>
             </h1>
 
             <p className="max-w-[34ch] text-[22px] leading-[1.4] tracking-tight text-foreground/65">
-              Independent engineer focused on interfaces that feel calm,
-              considered, and quietly fast.
+              UX-driven designer based in Shenzhen, turning complex business
+              needs into clear, systematic interfaces.
             </p>
 
             <HeroCtas />
@@ -42,7 +42,7 @@ export function Hero(): ReactNode {
                 <PortraitMorph
                   srcA={PORTRAIT_SRC}
                   srcB={PORTRAIT_HOVER_SRC}
-                  alt="Josh portrait"
+                  alt="Jason Li portrait"
                 />
               </div>
             </div>
